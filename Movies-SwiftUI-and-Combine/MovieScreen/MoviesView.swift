@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct MoviesView: View {
+    @ObservedObject var movieViewModel: MovieViewModel
+    
+    init(movieViewModel: MovieViewModel) {
+        self.movieViewModel = movieViewModel
+    }
     @State private var searchText = ""
 
     var body: some View {
         NavigationView {
-            List {
-                Text("A List Item")
-                Text("A Second List Item")
-                Text("A Third List Item")
+            List(movieViewModel.movieList) { movie in
+                MovieRowView(viewModel:movie)
             }
             .navigationBarTitle("Movies")
         }.navigationViewStyle(StackNavigationViewStyle())
@@ -28,6 +31,6 @@ struct MoviesView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MoviesView()
+        MoviesView(movieViewModel: MovieViewModel(movieService: MovieService()))
     }
 }
