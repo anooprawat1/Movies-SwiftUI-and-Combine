@@ -13,10 +13,10 @@ struct MovieRowViewModel: Identifiable {
     var imageUrl: URL?
     var description: String
     
-    init(item: MovieResponse.Movie) {
-        self.id = item.id
-        self.title = item.title
-        self.imageUrl = URL(string: "https://image.tmdb.org/t/p/original" + (item.imageUrl ?? ""))
-        self.description = item.overview
+    init(id: Int, title: String, imageUrl: String?, description: String) {
+        self.id = id
+        self.title = title
+        self.imageUrl = URL(string: "https://image.tmdb.org/t/p/original" + (imageUrl ?? "" ))
+        self.description = description
     }
 }

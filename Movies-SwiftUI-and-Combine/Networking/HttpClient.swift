@@ -24,7 +24,6 @@ class HttpClient: HttpClientProtocol {
             guard let self = self, let urlRequest = endpoint.urlRequest else { return promise(.failure(.invalidURL))}
             URLSession.shared.dataTaskPublisher(for: urlRequest)
                 .tryMap { (data, response) -> Data in
-                    print("Map aya")
                     guard  let httpResponse = response as? HTTPURLResponse, 200...299 ~= httpResponse.statusCode else {
                         throw RequestError.unexpectedStatusCode
                     }

@@ -19,6 +19,9 @@ struct MoviesView: View {
         NavigationView {
             List(movieViewModel.movieList) { movie in
                 MovieRowView(viewModel:movie)
+                    .onAppear {
+                        movieViewModel.currentMovieScroll(movie)
+                    }
             }
             .navigationBarTitle("Movies")
         }.navigationViewStyle(StackNavigationViewStyle())
