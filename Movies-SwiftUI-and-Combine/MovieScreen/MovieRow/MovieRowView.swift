@@ -35,4 +35,3 @@ struct MovieRowView_Previews: PreviewProvider {
         MovieRowView(viewModel: MovieRowViewModel(id: 12321,title: "Best Movie", imageUrl:  "/nPW5AkzoQSO8dWhE8WZMFvC41iW.jpg", description:"This is the best movie"))
     }
 }
-

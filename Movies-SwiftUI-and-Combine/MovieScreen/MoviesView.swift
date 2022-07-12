@@ -13,21 +13,18 @@ struct MoviesView: View {
     init(movieViewModel: MovieViewModel) {
         self.movieViewModel = movieViewModel
     }
-    @State private var searchText = ""
 
     var body: some View {
         NavigationView {
             List(movieViewModel.movieList) { movie in
                 MovieRowView(viewModel:movie)
                     .onAppear {
-                        movieViewModel.currentMovieScroll(movie)
+                        movieViewModel.movieDidAppear(movie)
                     }
             }
             .navigationBarTitle("Movies")
         }.navigationViewStyle(StackNavigationViewStyle())
-            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always)).onSubmit {
-                
-            }
+            .searchable(text: $movieViewModel.searchText, placement: .navigationBarDrawer(displayMode: .always))
         
     }
 }
